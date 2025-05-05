@@ -1,0 +1,99 @@
+/* Import futuristic font */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: url('A_website_landing_page_for_"CapChain"_displays_a_f.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #00ffff;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Overlay to darken and improve text readability */
+.overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 0;
+}
+
+/* Header container */
+header {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Typing effect */
+.typing {
+    font-size: 3rem;
+    font-weight: 700;
+    white-space: nowrap;
+    border-right: 2px solid #00ffff;
+    overflow: hidden;
+    width: 0;
+    animation: typing 3s steps(12) forwards, blink 0.75s step-end infinite;
+    color: #00ffff;
+    text-shadow: 0 0 15px #00ffff;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 12ch }
+}
+
+@keyframes blink {
+    50% { border-color: transparent }
+}
+
+/* Subtitle */
+.subtitle {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #ccfaff;
+    text-shadow: 0 0 8px #00ffff;
+}
+
+/* Buttons */
+.buttons {
+    margin-top: 40px;
+}
+
+.btn {
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 0 15px #00ffff;
+}
+
+.btn.primary {
+    background: linear-gradient(90deg, #00e5e5, #00ffff);
+    color: #000;
+}
+
+.btn.secondary {
+    background: rgba(0, 0, 0, 0.6);
+    color: #00ffff;
+    border: 1px solid #00ffff;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #00ffff;
+}
