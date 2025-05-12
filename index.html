@@ -157,12 +157,6 @@
       border-radius: 8px;
       border: none;
       margin-bottom: 15px;
-      box-shadow: 0 0 10px #00ffff;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    input[type="email"]:focus {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #00ffff;
     }
     button {
       padding: 12px 25px;
@@ -175,10 +169,7 @@
       box-shadow: 0 0 10px #00ffff;
       transition: transform 0.2s ease;
     }
-    button:hover { 
-      transform: scale(1.05); 
-      box-shadow: 0 0 15px #00ffff;
-    }
+    button:hover { transform: scale(1.05); }
     #responseMsg {
       margin-top: 15px;
       font-size: 0.95rem;
@@ -232,7 +223,8 @@
   </footer>
 
   <script>
-    const aboutText = `ZodiLink is your blockchain-based passport to a verified professional future...`; // trimmed for brevity
+    const aboutText = `ZodiLink is your blockchain-based passport to a verified professional future. It’s not just a platform — it’s a decentralized ecosystem built to empower real skills, real experiences, and real talent. On ZodiLink, you own your work history. Each completed project, every skill you develop, and every endorsement is immutably stored on-chain. This prevents fraud, eliminates gatekeeping, and opens the job market to underrepresented creators and workers. We’re rebuilding how trust works in the hiring world. Employers will no longer rely solely on social followings or polished LinkedIn profiles. Instead, they get direct, tamper-proof access to real capability, backed by cryptographic proof. ZodiLink is perfect for: • Developers and designers showing real contributions to open source and startups. • Writers and creators proving content output. • Communities highlighting active moderators, managers, and builders. No more clout games. No more ‘who you know’ over ‘what you do.’`;
+
     let i = 0;
 
     function startTyping() {
@@ -252,34 +244,31 @@
     const form = document.getElementById('waitlistForm');
     const msg = document.getElementById('responseMsg');
 
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', e => {
       e.preventDefault();
       const email = form.email.value;
 
-      try {
-        const response = await fetch('/api/waitlist', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email })
-        });
+      // Send email to Google Apps Script
+      fetch('https://script.google.com/macros/s/AKfycbwNAwzpV86KoLldm3cxHm0_tDlqGrLOU2CDKUzQgs0KCq36SeKnmLk2kcC_8N3EmYLOOQ/exec', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `email=${encodeURIComponent(email)}`
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.result === "success") {
+      msg.textContent = "✅ You're on the list!";
+    } else {
+      msg.textContent = "❌ There was an issue, please try again later.";
+    }
+  })
+  .catch(error => {
+    console.error('Error submitting form:', error);
+    msg.textContent = "❌ There was an issue, please try again later.";
+  });
 
-        const data = await response.json();
-
-        if (response.ok) {
-          msg.textContent = data.message;
-          msg.style.color = "lightgreen";
-        } else {
-          msg.textContent = data.message || "Something went wrong.";
-          msg.style.color = "red";
-        }
-
-      } catch (error) {
-        msg.textContent = "❌ Failed to join. Please try again later.";
-        msg.style.color = "red";
-      }
-
-      form.reset();
-    });
+  form.reset();
+});
   </script>
 
 </body>
