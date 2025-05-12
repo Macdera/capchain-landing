@@ -3,13 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CapChain</title>
+  <title>ZodiLink</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Orbitron', sans-serif;
       margin: 0;
@@ -19,8 +16,6 @@
       color: #00ffff;
       overflow-x: hidden;
     }
-
-    /* Navbar */
     nav {
       position: fixed;
       top: 0;
@@ -33,12 +28,10 @@
       z-index: 1000;
       box-shadow: 0 0 10px #00ffff33;
     }
-
     nav img {
       height: 40px;
       filter: drop-shadow(0 0 8px #00ffff);
     }
-
     nav ul {
       list-style: none;
       display: flex;
@@ -46,20 +39,16 @@
       margin: 0;
       padding: 0;
     }
-
     nav ul li a {
       text-decoration: none;
       color: #00ffff;
       font-weight: 600;
       transition: 0.3s ease-in-out;
     }
-
     nav ul li a:hover {
       color: #ffffff;
       text-shadow: 0 0 10px #00ffff;
     }
-
-    /* Header */
     header {
       height: 100vh;
       display: flex;
@@ -70,7 +59,6 @@
       padding-top: 80px;
       animation: fadeIn 2s ease-in-out;
     }
-
     .typing-title {
       font-size: 3.5rem;
       font-weight: 700;
@@ -83,22 +71,13 @@
       text-shadow: 0 0 15px #00ffff;
       margin-bottom: 15px;
     }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 12ch }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent }
-    }
-
+    @keyframes typing { from { width: 0 } to { width: 12ch } }
+    @keyframes blink { 50% { border-color: transparent } }
     .hero h2 {
       font-size: 1.5rem;
       margin: 20px 0;
       text-shadow: 0 0 10px #00ffff;
     }
-
     .cta-btn {
       background: linear-gradient(90deg, #00e5e5, #00ffff);
       padding: 15px 35px;
@@ -112,42 +91,40 @@
       text-transform: uppercase;
       box-shadow: 0 0 15px #00ffff;
     }
-
     .cta-btn:hover {
       transform: scale(1.1);
       box-shadow: 0 0 25px #00ffff;
     }
-
     .cta-btn.secondary {
       background: rgba(0, 0, 0, 0.6);
       color: #00ffff;
       border: 1px solid #00ffff;
     }
-
     .hero {
       z-index: 1;
       margin-top: 20px;
       padding: 0 20px;
     }
-
     #about {
-      text-align: center;
-      padding: 60px 20px;
-      background-color: rgba(0, 0, 0, 0.7);
+      text-align: left;
+      padding: 80px 30px 40px;
+      background-color: rgba(0, 0, 0, 0.85);
       border-radius: 15px;
-      margin: 40px 20px;
+      margin: 60px 20px;
+      position: relative;
     }
-
     #about h2 {
-      font-size: 2rem;
-      margin: 20px 0;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
     }
-
     #about p {
       font-size: 1.1rem;
-      margin: 10px 0;
+      line-height: 1.7;
+      margin-bottom: 20px;
     }
-
+    #about .cta-btn {
+      margin-top: 30px;
+    }
     footer {
       background-color: #001a1a;
       color: #00cccc;
@@ -155,10 +132,47 @@
       padding: 20px 0;
       font-size: 0.9rem;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    #waitlist {
+      background: #000;
+      font-family: Arial, sans-serif;
+      color: #00ffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 0;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    #waitlist h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #00ffff;
+    }
+    input[type="email"] {
+      padding: 12px;
+      width: 300px;
+      max-width: 90%;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 12px 25px;
+      background-color: #00ffff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00ffff;
+      transition: transform 0.2s ease;
+    }
+    button:hover { transform: scale(1.05); }
+    #responseMsg {
+      margin-top: 15px;
+      font-size: 0.95rem;
     }
   </style>
 </head>
@@ -166,21 +180,20 @@
 
   <!-- Navbar -->
   <nav>
-    <!-- Replace 'logo.png' with your actual logo filename -->
-    <img src="capchain-logo.png" alt="CapChain Logo" />
+    <img src="zodilink-logo.png" alt="ZodiLink Logo" />
     <ul>
       <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#about">Join</a></li>
+      <li><a href="#about" onclick="startTyping()">About</a></li>
+      <li><a href="#waitlist">Join</a></li>
     </ul>
   </nav>
 
   <!-- Header Section -->
   <header id="home">
-    <div class="typing-title">CapChain</div>
+    <div class="typing-title">ZodiLink</div>
     <div class="hero">
       <h2>Own Your Work. Chain Your Worth.</h2>
-      <p>CapChain is your decentralized job platform. Build your blockchain resume, prove your work, and unlock opportunities.</p>
+      <p>ZodiLink is your decentralized job platform. Build your blockchain resume, prove your work, and unlock opportunities.</p>
       <button class="cta-btn">Get Started</button>
       <button class="cta-btn secondary">Learn More</button>
     </div>
@@ -188,15 +201,64 @@
 
   <!-- About Section -->
   <section id="about">
-    <h2>What is CapChain?</h2>
-    <p>CapChain is a decentralized job and reputation platform powered by blockchain technology. We provide jobs, skills verification, and more...</p>
+    <h2>What is ZodiLink?</h2>
+    <p id="about-text"></p>
     <button class="cta-btn">Join Now</button>
+  </section>
+
+  <!-- Waitlist Section -->
+  <section id="waitlist">
+    <h1>Join ZodiLink Early Access</h1>
+    <form id="waitlistForm">
+      <input type="email" name="email" placeholder="Enter your email" required>
+      <br>
+      <button type="submit">Join Waitlist</button>
+      <p id="responseMsg"></p>
+    </form>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 CapChain | All Rights Reserved</p>
+    <p>© 2025 ZodiLink | All Rights Reserved</p>
   </footer>
+
+  <script>
+    const aboutText = `ZodiLink is your blockchain-based passport to a verified professional future. It’s not just a platform — it’s a decentralized ecosystem built to empower real skills, real experiences, and real talent. On ZodiLink, you own your work history. Each completed project, every skill you develop, and every endorsement is immutably stored on-chain. This prevents fraud, eliminates gatekeeping, and opens the job market to underrepresented creators and workers. We’re rebuilding how trust works in the hiring world. Employers will no longer rely solely on social followings or polished LinkedIn profiles. Instead, they get direct, tamper-proof access to real capability, backed by cryptographic proof. ZodiLink is perfect for: • Developers and designers showing real contributions to open source and startups. • Writers and creators proving content output. • Communities highlighting active moderators, managers, and builders. No more clout games. No more ‘who you know’ over ‘what you do.’`;
+
+    let i = 0;
+
+    function startTyping() {
+      const textArea = document.getElementById('about-text');
+      textArea.textContent = '';
+      i = 0;
+      function typeWriter() {
+        if (i < aboutText.length) {
+          textArea.textContent += aboutText.charAt(i);
+          i++;
+          setTimeout(typeWriter, 20);
+        }
+      }
+      typeWriter();
+    }
+
+    const form = document.getElementById('waitlistForm');
+    const msg = document.getElementById('responseMsg');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const email = form.email.value;
+
+      fetch('https://docs.google.com/forms/d/e/1FAIpQLSd2p_qv2yKjwP3_R4pw1z-ZvC9o_rd6VYLvwzHKz-d9xwZowg/formResponse', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `entry.1804802234=${encodeURIComponent(email)}`
+      });
+
+      form.reset();
+      msg.textContent = "✅ You're on the list!";
+    });
+  </script>
 
 </body>
 </html>
